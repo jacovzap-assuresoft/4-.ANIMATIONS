@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Document</title>
+  </head>
+  <body>
+    <section class="page">
+      <header class="page__header">
+        <h1 class="page__logo">TAREA 3</h1>
+
+        <label for="menu-icon" class="page__header--icon">
+          <img src="public/menu.svg" alt="menu" />
+        </label>
+      </header>
+      <input
+        type="checkbox"
+        class="page__header--input"
+        id="menu-icon"
+        checked
+      />
+
+      <nav class="page__nav">
+        <ul>
+          <li>
+            <img src="public/dashboard.svg" alt="" class="page__nav--icon" />
+            <p class="page__nav--text">Dashboard</p>
+          </li>
+          <li>
+            <img src="public/widget.svg" alt="" class="page__nav--icon" />
+            <p class="page__nav--text">Widgets</p>
+          </li>
+          <li>
+            <img src="public/charts.svg" alt="" class="page__nav--icon" />
+            <p class="page__nav--text">Charts</p>
+          </li>
+        </ul>
+      </nav>
+      <div class="page__content">
+        <main class="page__main">
+          <div class="page-main--tooltip">
+            <div class="tooltip-text">
+              <a href="#">magic</a>
+            </div>
+            <div class="tooltip">
+              <p>tooltip!</p>
+            </div>
+            <div class="tooltip-triangle"></div>
+          </div>
+          <div class="page__main--loader--container">
+            <div class="page__main--loader">
+              <div></div>
+              <div></div>
+              <div></div>
+            </div>
+          </div>
+        </main>
+      </div>
+      <footer class="page__footer">
+        <a href="https://github.com/jacovzap" target="_blank"
+          >Made by @jacovzap</a
+        >
+      </footer>
+    </section>
+  </body>
+</html>
