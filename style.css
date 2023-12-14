@@ -298,3 +298,17 @@ p{
   --hover-color: #374151;
 }
 
+.change-mode-button{
+  padding: 0.7rem;
+  background-color: var(--hover-color);
+  border: 1px solid var(--border-color);
+  border-radius: 0.5rem;
+  cursor: pointer;
+  color: var(--text-color);
+  user-select: none;
+}
+
+.change-mode-button:hover{
+  background-color: var(--bg-color);
+  background-color: var(--hover-color);
+}
