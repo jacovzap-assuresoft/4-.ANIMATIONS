@@ -6,13 +6,8 @@
   --bg-color: #f9fafb;
   --border-color: #6b7280;
   --hover-color: #f3f4f6;
-
-  --primary-color-dark: #3b82f6;
-  --secondary-color-dark: #60a5fa;
-  --title-color-dark: #d1d5db;
-  --text-color-dark: #e5e7eb;
-  --bg-color-dark: #1f2937;
-  --border-color-dark: #6b7280;
+  --tooltip-bg-color: #374151;
+  --tooltip-text-color: #f3f4f6;
 }
 
 * {
@@ -22,10 +17,13 @@
 }
 
 .page {
-    position: relative;
     display: flex;
     flex-direction: column;
     min-height: 100vh;
+}
+
+.page__nav--text{
+    color: var(--title-color);
 }
 
 .page__header {
@@ -35,19 +33,18 @@
     align-items: center;
     border-bottom: 1px solid var(--border-color);
     background-color: var(--bg-color);
-    position: relative;
     padding: 1rem;
 }
 
 .page__content {
   display: flex;
   flex-grow: 1;
+  position: relative;
 }
 
 .page__header--icon{
     user-select: none;
     left: 20rem;
-    position: absolute;
     padding: 0.4rem;
     color: var(--title-color);
     cursor: pointer;
@@ -64,11 +61,11 @@
 
 .page__nav {
     position: absolute;
-    width: 300px;
+    height: 100%;
+    max-width: 300px;
     border-right: 1px solid var(--border-color);
-    height: 100vh;
     background-color: var(--bg-color);
-    transition: ease-in-out 0.2s;
+    transition: transform ease-in-out 0.2s;
 }
 
 .page__logo{
@@ -79,7 +76,7 @@
 }
 
 .page__main {
-  row-gap: 10em;
+  row-gap: 1em;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -96,18 +93,23 @@
   justify-content: center;
 }
 
-#menu-icon:checked ~ .page__nav {
-    transform: translate(-230px);
+#menu-icon:checked + div > .page__nav {
+    transform: translate(-195px);
 }
 
-#menu-icon:checked ~ .page__nav > ul > li > img {
+#menu-icon:checked + div > .page__nav > ul > li > img {
     transition: all 0.3s ease-in-out;
     padding: 0rem;
-    transform: translate(187px);
+    transform: translate(151px);
 }
 
-#menu-icon:checked ~ .page__nav > ul > li:hover {
+#menu-icon:checked + div > .page__nav > ul > li:hover {
   background-color: var(--bg-color);
+}
+
+a{
+  text-decoration: none;
+  color: var(--title-color);
 }
 
 ul {
@@ -193,27 +195,35 @@ p{
   column-gap: 10rem;
 }
 
-.page__main--tooltip{
-  transition: all 0.3s ease-in-out;
-  position: relative;
-  align-items: center;
+.page__tooltip-section {
+  display: flex;
+  column-gap: 10rem;
 }
 
-.tooltip {
+.page__main--tooltip{
+  max-width: fit-content;
+  max-height: fit-content;
+  position: relative;
+}
+
+.tooltip{
+  z-index: 2;
+  display: flex;
+  visibility: hidden;
   position: absolute;
-  background-color: var(--title-color);
-  color: var(--text-color-dark);
+}
+
+.tooltip-body {
+  background-color: var(--tooltip-bg-color);
+  color: var(--tooltip-text-color);
   padding: 0.5rem 1rem;
   border-radius: 0.2rem;
-  visibility: hidden;
-  box-shadow: -1px 3px 4px var(--border-color);
+  box-shadow: -1px 3px 3px var(--border-color);
 }
 
 .tooltip-triangle{
-  position: absolute;
   width: 0;
   height: 0;
-  visibility: hidden;
 }
 
 .tooltip-text:hover ~ div {
@@ -221,54 +231,70 @@ p{
 }
 
 .tooltip-top {
-  top: -3rem;
-  left: -1.4rem;
+  flex-direction: column;
+  align-items: center;
+  left: 50%;
+  right: 50%;
+  top: -3.3rem
 }
 
 .tooltip-triangle-top{
   border-left: 7px solid transparent;
   border-right: 7px solid transparent;
   border-top: 7px solid var(--title-color);
-  top: -0.6rem;
-  right: 1.2rem;
 }
 
 .tooltip-right {
-  top: -0.5rem;
-  right: -6.7rem;
+  flex-direction: row;
+  align-items: center;
+  top: 50%;
+  bottom: 50%;
+  left: calc(100% + 0.5rem);
 }
 
 .tooltip-triangle-right{
-  top: 0.5rem;
-  right: -0.9rem;
   border-top: 7px solid transparent;
   border-bottom: 7px solid transparent;
   border-right: 7px solid var(--title-color);
+  z-index: 1;
 }
 
 .tooltip-bottom {
-  bottom: -3rem;
-  left: -1.4rem;
+  flex-direction: column;
+  align-items: center;
+  left: 50%;
+  right: 50%;
+  bottom: calc(0% - 3.4rem);
 }
 
 .tooltip-triangle-bottom{
   border-left: 7px solid transparent;
   border-right: 7px solid transparent;
   border-bottom: 7px solid var(--title-color);
-  bottom: -0.6rem;
-  right: 1.2rem;
 }
 
-
 .tooltip-left {
-  top: -0.5rem;
-  left: -6.7rem;
+  flex-direction: row;
+  align-items: center;
+  top: 50%;
+  bottom: 50%;
+  right: calc(100% + 0.5rem);
 }
 
 .tooltip-triangle-left{
-  top: 0.5rem;
-  left: -0.9rem;
   border-top: 7px solid transparent;
   border-bottom: 7px solid transparent;
   border-left: 7px solid var(--title-color);
 }
+
+#dark-mode-icon:checked ~ .page  {
+  background-color: black;
+  --primary-color: #3b82f6;
+  --secondary-color: #60a5fa;
+  --title-color: #d1d5db;
+  --text-color: #e5e7eb;
+  --bg-color: #1f2937;
+  --border-color: #6b7280;
+  --hover-color: #374151;
+}
+
